@@ -5,48 +5,18 @@ using UnityEngine.UI;
 
 public class Healthbar : MonoBehaviour
 {
-    public float health;
-    public float maxHealth;
-    public bool takeDamage; 
 
-    public GameObject healthbarUI;
     public Slider slider;
 
-    private void Start()
+    public void SetMaxHealth(int health)
     {
-        health = maxHealth;
-        slider.value = CalculateHealth();
+        slider.maxValue = health;
+        slider.value = health;
     }
 
-    private void Update()
+    public void setHealth(int health)
     {
-        slider.value = CalculateHealth();
-
-        if (takeDamage == true)
-        {
-            health = -5;
-        }
-        else
-        {
-            takeDamage = false;
-        }
-            
-        if(health < maxHealth)
-        {
-            healthbarUI.SetActive(true);
-        }
-        if (health <= 0)
-        {
-            Destroy(gameObject);
-        }
-
-        if(health > maxHealth)
-        {
-            health = maxHealth;
-        }
+        slider.value = health;
     }
-    float CalculateHealth()
-    {
-        return health / maxHealth;
-    }
+    
 }
